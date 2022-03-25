@@ -5,7 +5,8 @@
   "scripts": {
     "start": "node ./bin/www",
     "start:dev":"nodemon ./bin/www",
-    "compile:watch":"tsc -w"
+    "compile":"yarn tsc",
+    "compile:watch":"yarn tsc -w"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
