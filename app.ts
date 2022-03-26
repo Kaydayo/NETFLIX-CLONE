@@ -9,6 +9,7 @@ import { connectDB } from './src/db/connect';
 
 import indexRouter from './src/routes/index';
 import usersRouter from './src/routes/users';
+import authRouter from './src/routes/auth'
 
 dotenv.config()
 
@@ -16,7 +17,7 @@ const app = express();
 
 app.use(cors())
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
+app.set('views', path.join(__dirname, '../../views'));
 app.set('view engine', 'jade');
 
 app.use(logger('dev'));
@@ -31,6 +32,7 @@ connectDB();
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/api/auth', authRouter)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -45,7 +47,7 @@ app.use(function(err: HttpError, req:Request, res:Response, _next: NextFunction)
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error');
+  res.json({error:err});
 });
 
 export default app;
