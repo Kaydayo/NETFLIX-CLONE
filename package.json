@@ -4,9 +4,9 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "start:dev":"nodemon ./bin/www",
-    "compile":"yarn tsc",
-    "compile:watch":"yarn tsc -w"
+    "start:dev": "nodemon ./bin/www",
+    "compile": "yarn tsc",
+    "compile:watch": "yarn tsc -w"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
@@ -25,6 +25,7 @@
   },
   "devDependencies": {
     "@types/cookie-parser": "^1.4.2",
+    "@types/cors": "^2.8.12",
     "@types/express": "^4.17.13",
     "@types/http-errors": "^1.8.2",
     "@types/morgan": "^1.9.3"

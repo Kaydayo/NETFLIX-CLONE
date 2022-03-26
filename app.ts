@@ -3,12 +3,18 @@ import express, {Request, Response, NextFunction}from 'express';
 import path from 'path';
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';
+import dotenv from 'dotenv'
+import cors from 'cors';
+import { connectDB } from './src/db/connect';
 
 import indexRouter from './src/routes/index';
 import usersRouter from './src/routes/users';
 
+dotenv.config()
+
 const app = express();
 
+app.use(cors())
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
@@ -18,6 +24,10 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+
+connectDB();
+
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
