@@ -5,7 +5,8 @@ export interface IUser extends mongoose.Document{
     email: string;
     password: string;
     profilePic: string;
-    isAdmin: boolean
+    isAdmin: boolean;
+    _doc?: any;
 }
 
 export interface IList extends mongoose.Document{
@@ -27,4 +28,16 @@ export interface IMovie extends mongoose.Document{
     limit: number;
     genre: string;
     isSeries: boolean
+}
+
+export interface SuccessResponse {
+    success: boolean;
+    payload: object|string|[];
+    message: string
+}
+
+export interface FailedResponse{
+    success: boolean;
+    error: object|string|[]
+    message: string
 }
