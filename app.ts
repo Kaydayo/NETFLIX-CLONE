@@ -3,13 +3,13 @@ import express, {Request, Response, NextFunction}from 'express';
 import path from 'path';
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';
-import dotenv from 'dotenv'
+import dotenv from 'dotenv';
 import cors from 'cors';
 import { connectDB } from './src/db/connect';
 
 import indexRouter from './src/routes/index';
 import usersRouter from './src/routes/users';
-import authRouter from './src/routes/auth'
+import authRouter from './src/routes/auth';
 
 dotenv.config()
 
@@ -33,6 +33,7 @@ connectDB();
 // app.use('/', indexRouter);
 // app.use('/users', usersRouter);
 app.use('/api/auth', authRouter)
+app.use('/api/users', usersRouter)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
