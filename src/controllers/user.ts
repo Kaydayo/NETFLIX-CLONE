@@ -92,20 +92,22 @@ export const getMonthlyStats = async (req: Request, res: Response, next: NextFun
     try {
         const data = await User.aggregate([
             {
-                $project: { $month: '$createdAt' }
+                $project: {
+                    month: { $month: "$createdAt" }
+                },
             },
             {
                 $group: {
-                    _id: '$month',
+                    _id: "$month",
                     total: { $sum: 1 }
-                }
-            }
+                },
+            },
         ]);
         let newData = data.map(datum => {
-            const aMonth = monthArray[datum._id]
-            return {...datum ,month: aMonth}
+            const aMonth = monthArray[datum._id - 1]
+            return { ...datum, month: aMonth }
         })
-        return sendSuccessResponse(res, {data: newData}, 'monthly statistics retrieved successfully', 200)
+        return sendSuccessResponse(res, { data: newData }, 'monthly statistics retrieved successfully', 200)
     } catch (error) {
         return sendFailedResponse(res, error, 'an error occurred', 500)
     }
