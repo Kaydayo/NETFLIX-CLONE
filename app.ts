@@ -10,7 +10,8 @@ import { connectDB } from './src/db/connect';
 import indexRouter from './src/routes/index';
 import usersRouter from './src/routes/users';
 import authRouter from './src/routes/auth';
-import movieRouter from './src/routes/movies'
+import movieRouter from './src/routes/movies';
+import listRouter from './src/routes/list'
 
 dotenv.config()
 
@@ -36,6 +37,7 @@ connectDB();
 app.use('/api/auth', authRouter)
 app.use('/api/users', usersRouter)
 app.use('/api/movies', movieRouter)
+app.use('/api/lists', listRouter)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
