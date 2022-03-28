@@ -50,6 +50,19 @@ export const deleteMovie = async (req: CustomRequest, res: Response, next: NextF
     }
 }
 
+export const getAMovie = async (req: CustomRequest, res: Response, next: NextFunction) => {
+    if (req.user.isAdmin) {
+        try {
+            const getMovie = await Movie.findById(req.params.id)
+            return sendSuccessResponse(res, {data: getMovie}, 'successfully retrieved', 200)
+        } catch (error) {
+            return sendFailedResponse(res, error, 'an error occurred', 500)
+        }
+    } else {
+        return sendFailedResponse(res, 'no priviledge', 'you are not allowed to create', 403)
+    }
+}
+
 export const randomMovie = async (req: CustomRequest, res: Response, next: NextFunction) => {
     const movieType = req.query.type
     let movie;
